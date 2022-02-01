@@ -29,7 +29,7 @@ import java.nio.file.Path;
 @RequestMapping("/menu/qr")
 public class MenuCardController {
 
-    private static final String ACCESS_TOKEN = "sl.BBP85AxjPqvW5TpV6iI2j5rFISoe1QbNGmi60TRCujP8jpUuhlg1pRkwfXdA_HQvItnxESTHqzy1pqGw76CMPOl1A0xrddtdaKl-jJ-HFCcunG79VQizYOp2YQx2SxGPvA5sN9OCP2kq";
+    private static final String ACCESS_TOKEN = "sl.BBPq2kiN6HR5UtAcz6aHhLqTNF4iL1qcOuqPtW7-lHg7FqDvujW-FN07pDt9SE6e_wXReN9HueytvpEGxtvUkq5LqGgX0e5jKWgx4faseUZsX10s-KKqxUf7XZMwDwBM90kgJAWayxJB";
 
     @GetMapping(value="/generate/{menuId}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] generateQRCodeImage(@PathVariable String menuId, @RequestPart("file") MultipartFile file) throws Exception {
@@ -70,7 +70,7 @@ public class MenuCardController {
 
         Path path = FileSystems.getDefault().getPath(qrImagePath);
         System.out.println(path);
-        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+//        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
 
         ByteArrayOutputStream pngOutputStream = new ByteArrayOutputStream();
         MatrixToImageWriter.writeToStream(bitMatrix, "PNG", pngOutputStream);
