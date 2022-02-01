@@ -27,7 +27,7 @@ import java.nio.file.Path;
 @RequestMapping("/menu/qr")
 public class MenuCardController {
 
-    private static final String ACCESS_TOKEN = "sl.BBOFdUAKpXpN4PNqQV-912s-MVydZQmohwrAxwKlo-KCkldfltDL3jPdIqZ-gP46Qky9lQ1qN1fTJ9-StXo2CfpvvFgzbXYhhdudUCLRqBJmTq18s6tWtymBq_yIU-O5P9QFdBQa5kdn";
+    private static final String ACCESS_TOKEN = "sl.BBO4MLjMglv_zPTnR9dwcjiMCgrHd2k2K7aZwhu7gOKapDrkauWayNDqmhN0c9BF1A4yCJEnF-DKCPWVbvIhq_4Uj3O61LRSo5jhENTQRJPqqXYI06rhDrOuekVBGs2uTtNyrDroaU2-";
 
     @GetMapping(value="/generate/{menuId}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] generateQRCodeImage(@PathVariable String menuId, @RequestPart("file") MultipartFile file) throws Exception {
@@ -43,11 +43,15 @@ public class MenuCardController {
         try (InputStream in = (file.getInputStream())) {
             FileMetadata metadata = client.files().uploadBuilder(uploadURL).withMode(WriteMode.OVERWRITE)
                     .uploadAndFinish(in);
+            System.out.println(metadata);
             ListSharedLinksResult result = client.sharing().listSharedLinksBuilder().withPath(uploadURL).withDirectOnly(true).start();
             imageLinkUrl = result.getLinks().toString();
             if(result.getLinks().size() < 1) {
                 SharedLinkMetadata sharedLinkMetadata = client.sharing().createSharedLinkWithSettings(uploadURL);
                 imageLinkUrl = sharedLinkMetadata.getUrl();
+            }
+            else {
+
             }
         }
         catch (IOException e) {
