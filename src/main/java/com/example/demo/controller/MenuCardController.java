@@ -36,7 +36,7 @@ public class MenuCardController {
         DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/java-tutorial").build();
         DbxClientV2 client = new DbxClientV2(config, ACCESS_TOKEN);
 
-        String qrImagePath = "/Users/sagar/Desktop/Menu-share-master/src/main/resources/qr_images/" + menuId  + ".png";
+        String qrImagePath = "/tmp/build_a0915a84/target/" + menuId  + ".png";
         String imageLinkUrl = "default";
         String uploadURL = "/QR/" + file.getOriginalFilename();
 
