@@ -37,7 +37,7 @@ public class MenuCardController {
         DbxClientV2 client = new DbxClientV2(config, ACCESS_TOKEN);
 
         String qrImagePath = "/Users/sagar/Desktop/Menu-share-master/src/main/resources/qr_images/" + menuId  + ".png";
-        String imageLinkUrl = "";
+        String imageLinkUrl = "default";
         String uploadURL = "/QR/" + file.getOriginalFilename();
 
         try (InputStream in = (file.getInputStream())) {
