@@ -12,6 +12,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,7 @@ import java.nio.file.Path;
 
 @RestController
 @CrossOrigin
+@Slf4j
 @RequestMapping("/menu/qr")
 public class MenuCardController {
 
@@ -40,18 +42,16 @@ public class MenuCardController {
         String imageLinkUrl = "default";
         String uploadURL = "/QR/" + file.getOriginalFilename();
 
+        log.info(imageLinkUrl);
         try (InputStream in = (file.getInputStream())) {
             FileMetadata metadata = client.files().uploadBuilder(uploadURL).withMode(WriteMode.OVERWRITE)
                     .uploadAndFinish(in);
-            System.out.println(metadata);
+            log.info(String.valueOf(metadata));
             ListSharedLinksResult result = client.sharing().listSharedLinksBuilder().withPath(uploadURL).withDirectOnly(true).start();
             imageLinkUrl = result.getLinks().toString();
             if(result.getLinks().size() < 1) {
                 SharedLinkMetadata sharedLinkMetadata = client.sharing().createSharedLinkWithSettings(uploadURL);
                 imageLinkUrl = sharedLinkMetadata.getUrl();
-            }
-            else {
-
             }
         }
         catch (IOException e) {
