@@ -27,7 +27,7 @@ import java.nio.file.Path;
 @RequestMapping("/menu/qr")
 public class MenuCardController {
 
-    private static final String ACCESS_TOKEN = "sl.BBO4MLjMglv_zPTnR9dwcjiMCgrHd2k2K7aZwhu7gOKapDrkauWayNDqmhN0c9BF1A4yCJEnF-DKCPWVbvIhq_4Uj3O61LRSo5jhENTQRJPqqXYI06rhDrOuekVBGs2uTtNyrDroaU2-";
+    private static final String ACCESS_TOKEN = "sl.BBNHsq_eYYYI0xs3VYo51DU2hELX9Y2-PBkajvwZfO7jYrRCm9p_NTinqsEzQ6ovEEVUwIsAvIOwMkfPHtBHc3bSOj5XYLMtWg27wp46BXoDeLacW4e6BbF4bR-WYcGF1FBrW4JG_kqS";
 
     @GetMapping(value="/generate/{menuId}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] generateQRCodeImage(@PathVariable String menuId, @RequestPart("file") MultipartFile file) throws Exception {
